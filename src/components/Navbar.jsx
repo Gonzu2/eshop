@@ -1,25 +1,50 @@
-import React from "react";
 import "./css/navbar.css";
+import { useState, useEffect } from "react";
+import logo from "../images/logo.png";
 
 function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [openedBefore, setOpenedBefore] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth((prevWidth) => {
+        const newWidth = window.innerWidth;
+        if (prevWidth !== newWidth) {
+          return newWidth;
+        }
+        return prevWidth;
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const handleMenuToggle = () => {
+    setOpenedBefore(true);
+    setMenuOpen(!menuOpen);
+  };
+
+  const screenWidthBelow1420 = windowWidth < 1420;
+  const translateValue = menuOpen && screenWidthBelow1420 ? "0%" : "-100%";
+
+  const menuStyles = {
+    right: translateValue,
+  };
+
   return (
     <>
       <nav className="navbar-wrapper">
         <div className="navbar-logo">
-          <div className="navbar-header-wrapper">
-            <div className="navbar-header-wrap first-header">
-              <p className="navbar-header">P</p>
-              <p className="navbar-header navbar-header-span">EAK</p>
-            </div>
-            <div className="navbar-header-wrap second-header">
-              <p className="navbar-header">P</p>
-              <p className="navbar-header navbar-header-span">ERFORMANCE</p>
-            </div>
-          </div>
-          <p className="navbar-slogan">Unleash Your Potential</p>
+          <img src={logo} alt="logo" />
         </div>
 
-        <ul className="navbar-items-list">
+        <ul className="navbar-items-list" style={menuStyles}>
           <li className="navbar-item">
             <p>New & Featured</p>
           </li>
@@ -70,8 +95,14 @@ function Navbar() {
               </g>
             </svg>
           </li>
+
           <li className="navbar-button navmenu">
-            <ul className="nav-menu-icon">
+            <ul
+              className={`nav-menu-icon ${
+                menuOpen ? "menu-open" : openedBefore ? "menu-closed" : ""
+              }`}
+              onClick={handleMenuToggle}
+            >
               <li className="nav-menu-icon-bar"></li>
               <li className="nav-menu-icon-bar"></li>
               <li className="nav-menu-icon-bar"></li>
