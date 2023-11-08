@@ -177,3 +177,38 @@
 .home-categories-wrapper:hover + .home-category-switch button svg {
   opacity: 1;
 }
+
+@media screen and (width <= 980px) {
+  .home-category-switch {
+    width: 150px;
+  }
+  .home-category-switch button {
+    width: 150px;
+  }
+}
+
+@media screen and (width <= 770px) {
+  .home-category-title {
+    font-size: 38px;
+  }
+}
+
+@media screen and (width <= 550px) {
+  .home-category-switch {
+    width: 75px;
+  }
+  .home-category-switch button {
+    width: 75px;
+  }
+}
+
+@media screen and (width <= 400px) {
+  .home-category-title {
+    font-size: 24px;
+  }
+}
+
+.category-iamge {
+  width: 100%;
+  height: calc(100dvh - 100px);
+}

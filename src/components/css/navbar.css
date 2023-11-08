@@ -98,6 +98,10 @@
   z-index: 5;
 }
 
+.navmenu:hover {
+  filter: drop-shadow(0px 0px 29px rgba(255, 255, 255, 1));
+}
+
 .nav-menu-icon {
   display: flex;
   flex-direction: column;
@@ -350,6 +354,7 @@
 @media screen and (width <= 750px) {
   .nav-menu-canvas {
     width: 80%;
+    right: -80%;
   }
 
   @keyframes canvas-open {
@@ -360,7 +365,7 @@
       right: 0%;
     }
   }
-  
+
   @keyframes canvas-close {
     0% {
       right: 0%;

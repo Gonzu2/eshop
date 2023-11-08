@@ -1,22 +1,67 @@
 import "./css/home.css";
 import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+
+import "./swiper.css";
+
+// import required modules
+import { Pagination } from "swiper/modules";
+
+import equipmentImage from "../images/equipment.png";
+import clothesImage from "../images/clothes.jpg";
+import supplementsImage from "../images/supplements.jpg";
 
 function Home() {
-  const [imageSelectedIndex, setImageSelectedIndex] = useState(1);
+  // const [imageSelectedIndex, setImageSelectedIndex] = useState(1);
 
-  function goToLeft() {
-    setImageSelectedIndex((prevIndex) => (prevIndex > 1 ? prevIndex - 1 : 3));
-  }
+  // function goToLeft() {
+  //   setImageSelectedIndex((prevIndex) => (prevIndex > 1 ? prevIndex - 1 : 3));
+  // }
 
-  function goToRight() {
-    setImageSelectedIndex((prevIndex) => (prevIndex < 3 ? prevIndex + 1 : 1));
-  }
+  // function goToRight() {
+  //   setImageSelectedIndex((prevIndex) => (prevIndex < 3 ? prevIndex + 1 : 1));
+  // }
 
   return (
     <div className="home-wrapper">
-      <ul className="home-categories-wrapper">
+      <Swiper
+        pagination={{
+          dynamicBullets: true,
+        }}
+        modules={[Pagination]}
+        className="mySwiper"
+      >
+        <SwiperSlide>
+          <img
+            src={equipmentImage}
+            alt="equipment-image"
+            className="category-iamge"
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src={clothesImage}
+            alt="clothes-image"
+            className="category-iamge"
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src={supplementsImage}
+            alt="supplements-image"
+            className="category-iamge"
+          />
+        </SwiperSlide>
+      </Swiper>
+
+      {/* <ul className="home-categories-wrapper">
         <li className="home-category-switch switch-to-left">
           <button onClick={goToLeft}>
             <FontAwesomeIcon icon={faAngleLeft} />
@@ -58,7 +103,7 @@ function Home() {
             <FontAwesomeIcon icon={faAngleRight} />
           </button>
         </li>
-      </ul>
+      </ul> */}
     </div>
   );
 }
