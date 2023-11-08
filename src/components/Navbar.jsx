@@ -39,7 +39,14 @@ function Navbar() {
 
   return (
     <>
-      <nav className="navbar-wrapper">
+      <nav
+        className="navbar-wrapper"
+        style={{
+          position: menuOpen ? "fixed" : "relative",
+          top: "0%",
+          zIndex: "10",
+        }}
+      >
         <div className="navbar-logo">
           <img src={logo} alt="logo" />
         </div>
@@ -96,12 +103,11 @@ function Navbar() {
             </svg>
           </li>
 
-          <li className="navbar-button navmenu">
+          <li className="navbar-button navmenu" onClick={handleMenuToggle}>
             <ul
               className={`nav-menu-icon ${
                 menuOpen ? "menu-open" : openedBefore ? "menu-closed" : ""
               }`}
-              onClick={handleMenuToggle}
             >
               <li className="nav-menu-icon-bar"></li>
               <li className="nav-menu-icon-bar"></li>
@@ -110,6 +116,40 @@ function Navbar() {
           </li>
         </ul>
       </nav>
+      <div
+        style={{
+          display: menuOpen ? "block" : "none",
+          width: "100vw",
+          height: "100px",
+        }}
+      ></div>
+      <div
+        className={`nav-menu-canvas ${
+          menuOpen
+            ? "nav-menu-canvas-open"
+            : openedBefore
+            ? "nav-menu-canvas-closed"
+            : ""
+        }`}
+      >
+        <ul className="nav-menu-canvas-items">
+          <li className="nav-menu-canvas-item">
+            <p>New & Featured</p>
+          </li>
+          <li className="nav-menu-canvas-item">
+            <p>Supplements</p>
+          </li>
+          <li className="nav-menu-canvas-item">
+            <p>Barbells</p>
+          </li>
+          <li className="nav-menu-canvas-item">
+            <p>Plates</p>
+          </li>
+          <li className="nav-menu-canvas-item">
+            <p>Clothes</p>
+          </li>
+        </ul>
+      </div>
     </>
   );
 }

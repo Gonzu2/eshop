@@ -21,11 +21,12 @@
   list-style: none;
 
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 
   box-sizing: border-box;
   position: relative;
+  width: 100vw;
 }
 
 .home-category {
@@ -45,7 +46,7 @@
   opacity: 1;
 }
 
-.home-category::before {
+.home-category-equipment::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -55,6 +56,38 @@
 
   opacity: 0.5;
   background: url("../../images/equipment.png");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  transition: opacity 0.2s linear;
+}
+
+.home-category-clothes::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  opacity: 0.5;
+  background: url("../../images/clothes.jpg");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  transition: opacity 0.2s linear;
+}
+
+.home-category-supplements::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  opacity: 0.5;
+  background: url("../../images/supplements.jpg");
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
@@ -93,20 +126,31 @@
 }
 
 .home-category:hover:before {
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
 .home-category-switch {
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90vw;
+  width: 250px;
   height: 925px;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+
+  z-index: 2;
+}
+
+.switch-to-left {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.switch-to-right {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .home-category-switch button {
@@ -114,6 +158,8 @@
   border: none;
   height: 100%;
   width: 250px;
+
+  cursor: pointer;
 }
 
 .home-category-switch button svg {
